@@ -77,8 +77,25 @@ const createCategory = async (req, res) => {
   }
 };
 
+const deleteCategory = async (req , res)=>{
+  const deletedCategory = await Category.findByIdAndDelete(req.params.id)
+
+  if(!deletedCategory) {
+    res.status(404).json({
+      message : "Category not found!",
+      success : false
+    })
+  }
+
+  res.status(200).json({
+    message: "Category Deleted",
+    success : true
+  })
+}
+
 module.exports = {
   getCategories,
   createCategory,
   getCategoryById,
+  deleteCategory
 };

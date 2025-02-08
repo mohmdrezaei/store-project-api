@@ -14,7 +14,7 @@ const swaggerOptions = {
         },
       ],
     },
-    apis: ["./routes/category.js"],
+    apis: ["./routes/*.js"],
   };
   
   const outputFile = "./swagger.json"

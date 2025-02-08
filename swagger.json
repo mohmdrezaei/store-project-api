@@ -43,6 +43,25 @@
             "description": "Internal Server Error"
           }
         }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
       }
     },
     "/category/create": {
@@ -56,13 +75,15 @@
               "type": "object",
               "properties": {
                 "images": {
-                  "example": "any"
+                  "example": [
+                    "www.example.com"
+                  ]
                 },
                 "name": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "color": {
-                  "example": "any"
+                  "example": "string"
                 }
               }
             }
@@ -101,6 +122,10 @@
         }
       }
     },
+    "host": {
+      "type": "string",
+      "example": "http://localhost:6500"
+    },
     "servers": {
       "type": "array",
       "items": {
@@ -115,6 +140,6 @@
     }
   },
   "apis": [
-    "./routes/category.js"
+    "./routes/*.js"
   ]
 }
