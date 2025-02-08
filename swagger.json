@@ -24,6 +24,27 @@
         }
       }
     },
+    "/category/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/category/create": {
       "post": {
         "description": "",
@@ -35,19 +56,13 @@
               "type": "object",
               "properties": {
                 "images": {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "format": "url",
-                    "example": "https://example.com/image.jpg"
-                  },
-                  "description": "Array of image URLs"
+                  "example": "any"
                 },
                 "name": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "color": {
-                  "example": "string"
+                  "example": "any"
                 }
               }
             }
