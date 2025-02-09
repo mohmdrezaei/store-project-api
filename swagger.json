@@ -11,6 +11,45 @@
     "http"
   ],
   "paths": {
+    "/auth/register": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "example": "string"
+                },
+                "phone": {
+                  "example": "string"
+                },
+                "email": {
+                  "example": "string"
+                },
+                "password": {
+                  "example": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/category/": {
       "get": {
         "description": "",
@@ -112,16 +151,16 @@
             "in": "body",
             "schema": {
               "type": "object",
-              "images": {
-                "example": [
-                  "www.example.com"
-                ]
-              },
-              "name": {
-                "example": "string"
-              },
-              "color": {
-                "example": "string"
+              "properties": {
+                "images": {
+                  "example": "any"
+                },
+                "name": {
+                  "example": "any"
+                },
+                "color": {
+                  "example": "any"
+                }
               }
             }
           }

@@ -13,11 +13,9 @@ app.options("*", cors());
 // middleware
 app.use(bodyParser.json());
 
-
-const swaggerDocs = require('./swagger.json'); 
+const swaggerDocs = require("./swagger.json");
 
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
-
 
 /**
  * @swagger
@@ -31,9 +29,10 @@ app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
  *
  */
 
-
 const cetegoryRoutes = require("./routes/category");
+const userRoutes = require("./routes/user");
 
+app.use("/auth/", userRoutes);
 app.use("/category/", cetegoryRoutes);
 
 // Database
