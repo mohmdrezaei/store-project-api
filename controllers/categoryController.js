@@ -93,9 +93,50 @@ const deleteCategory = async (req , res)=>{
   })
 }
 
+const UpdateCategory = async(req , res)=>{
+  const limit = pLimit(2);
+
+  // آپلود تصاویر به Cloudinary
+  const imagesToUpload = req.body.images.map((image) => {
+    return limit(async () => {
+      const result = await cloudinary.uploader.upload(image);
+      return result;
+    });
+  });
+
+  const uploadStatus = await Promise.all(imagesToUpload);
+
+  // بررسی موفقیت‌آمیز بودن آپلود تصاویر
+  if (!uploadStatus || uploadStatus.length === 0) {
+    return res.status(500).json({
+      error: "Image upload failed!",
+      status: false,
+    });
+  }
+
+  // استخراج URL تصاویر آپلود شده
+  const imgUrl = uploadStatus.map((item) => item.secure_url);
+
+  const category = await Category.findByIdAndUpdate(req.params.id ,{
+    name : req.body.name,
+    images : imgUrl,
+    color :req.body.color
+  } ,{new:true})
+
+  if(!category) {
+    return res.status(500).json({
+      message : "Category cannot be updated!",
+      success : false
+    })
+  }
+
+  res.send(category)
+}
+
 module.exports = {
   getCategories,
   createCategory,
   getCategoryById,
-  deleteCategory
+  deleteCategory,
+  UpdateCategory
 };

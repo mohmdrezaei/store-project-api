@@ -62,12 +62,16 @@
             "description": "Not Found"
           }
         }
-      }
-    },
-    "/category/create": {
-      "post": {
+      },
+      "put": {
         "description": "",
         "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
           {
             "name": "body",
             "in": "body",
@@ -85,6 +89,39 @@
                 "color": {
                   "example": "string"
                 }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/category/create": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "images": {
+                "example": [
+                  "www.example.com"
+                ]
+              },
+              "name": {
+                "example": "string"
+              },
+              "color": {
+                "example": "string"
               }
             }
           }
@@ -121,10 +158,6 @@
           "example": "API documentation for home appliance store"
         }
       }
-    },
-    "host": {
-      "type": "string",
-      "example": "http://localhost:6500"
     },
     "servers": {
       "type": "array",
