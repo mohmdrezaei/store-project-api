@@ -1,16 +1,10 @@
 {
   "swagger": "2.0",
- "info": {
-		"title": "Home Appliance Store API",
-		"version": "1.0.0",
-		"description": "API documentation for the Home Appliance Store"
-	},
-  "servers": [
-		{
-			"url": "http://localhost:3000",
-			"description": "Local server"
-		}
-	],
+  "info": {
+    "version": "1.0.0",
+    "title": "REST API",
+    "description": ""
+  },
   "host": "localhost:6500",
   "basePath": "/",
   "schemes": [
@@ -28,16 +22,16 @@
               "type": "object",
               "properties": {
                 "name": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "phone": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "email": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "password": {
-                  "example": "string"
+                  "example": "any"
                 }
               }
             }
@@ -52,6 +46,39 @@
           },
           "500": {
             "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -124,15 +151,13 @@
               "type": "object",
               "properties": {
                 "images": {
-                  "example": [
-                    "www.example.com"
-                  ]
+                  "example": "any"
                 },
                 "name": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "color": {
-                  "example": "string"
+                  "example": "any"
                 }
               }
             }
