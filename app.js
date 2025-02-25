@@ -31,9 +31,11 @@ app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 const cetegoryRoutes = require("./routes/category");
 const userRoutes = require("./routes/user");
+const ProductRoutes = require("./routes/product");
 
 app.use("/auth/", userRoutes);
 app.use("/category/", cetegoryRoutes);
+app.use("/products/", ProductRoutes);
 
 // Database
 mongoose
