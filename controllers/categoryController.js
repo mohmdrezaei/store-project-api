@@ -37,7 +37,7 @@ const createCategory = async (req, res) => {
     // آپلود تصاویر به Cloudinary
     const imagesToUpload = req.body.images.map((image) => {
       return limit(async () => {
-        const result = await cloudinary.uploader.upload(image);
+        const result = await cloudinary.uploader.upload(image, { timeout: 60000 });
         return result;
       });
     });
